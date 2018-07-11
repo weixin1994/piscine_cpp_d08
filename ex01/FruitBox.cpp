@@ -10,7 +10,7 @@ FruitBox::~FruitBox()
 	
 }
 
-int	FruitBox::nbFruits()
+int	FruitBox::nbFruits() const
 {
 	return (_number);
 }
