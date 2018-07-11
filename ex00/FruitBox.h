@@ -10,7 +10,7 @@ class FruitBox
 	public:
 		FruitBox(int size);
 		~FruitBox();
-		int numFruits();
+		int nbFruits();
 		bool putFruit(Fruit *f);
 		Fruit *pickFruit();
 		FruitNode *head() const;
