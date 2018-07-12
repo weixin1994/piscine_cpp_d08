@@ -3,11 +3,13 @@
 
 #include "Fruit.h"
 
-struct FruitNode
+typedef struct s_FruitNode FruitNode;
+
+struct s_FruitNode
 {
-    FruitNode *next;
-    Fruit *fruit;
+	  Fruit const* elem;
+	  FruitNode* next;
 };
 
 
-#endif 
+#endif

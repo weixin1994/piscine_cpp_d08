@@ -1,9 +1,11 @@
 #include "Lime.h"
-#include "Fruit.h"
 
-Lime::Lime() : Lemon()
+Lime::Lime() : Lemon("lime", 2)
 {
-	this->_name = "lime";
-	this->_vitamins=2;
+	
 }
 
+Lime::~Lime()
+{
+	
+}

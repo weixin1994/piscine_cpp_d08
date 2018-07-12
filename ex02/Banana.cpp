@@ -1,8 +1,16 @@
 #include "Banana.h"
-#include "Fruit.h"
 
-Banana::Banana() : Fruit()
+Banana::Banana() : Fruit("banana", 5)
 {
-	this->_name = "banana";
-	this->_vitamins = 5;
+	
+}
+
+Banana::~Banana()
+{
+	
+}
+
+std::string	const&	Banana::getName() const
+{
+  return _name;
 }

@@ -1,7 +1,21 @@
 #include "Lemon.h"
 
-Lemon::Lemon() : Fruit()
+Lemon::Lemon() : Fruit("lemon", 3)
 {
-	this->_name = "lemon";
-	this->_vitamins = 3;
+	
+}
+
+Lemon::Lemon(std::string const& name, int vitamins) : Fruit(name, vitamins)
+{
+	
+}
+
+Lemon::~Lemon()
+{
+	
+}
+
+std::string const& Lemon::getName() const
+{
+  return _name;
 }

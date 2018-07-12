@@ -5,16 +5,16 @@
 
 class Fruit
 {
-	protected:
-		std::string _name;
-		int _vitamins;
-		
 	public:
-		Fruit();
-		std::string getName()const;
-		int getVitamins()const;
-
+	Fruit(std::string const&, int);
+	virtual ~Fruit();
+	virtual std::string const& getName() const = 0;
+	int	getVitamins() const;
+  
+	protected:
+	std::string	const _name;
+	int	_vitamins;
+  
 };
 
-
-#endif 
+#endif

@@ -1,16 +1,19 @@
-#ifndef _LITTLEHAND_H_
-#define _LITTLEHAND_H_
+#ifndef _LITLLEHANDS_H_
+#define _LITLLEHANDS_H_
 
 #include "FruitBox.h"
 #include "Coconut.h"
 
-class LittleHand 
+class LittleHand
 {
-
 	public:
-		static void  sortFruitBox(FruitBox &unsorted , FruitBox &lemons , FruitBox &bananas , FruitBox &limes);
-		static FruitBox * const *organizeCoconut(Coconut const * const *coconuts);
+		LittleHand();
+		~LittleHand();
+		static void sortFruitBox(FruitBox& unsorted,
+		FruitBox& lemons,
+		FruitBox& bananas,
+		FruitBox& limes);
+		static FruitBox* const* organizeCoconut(Coconut const* const* coconuts_packet);
 };
 
-
-#endif 
+#endif

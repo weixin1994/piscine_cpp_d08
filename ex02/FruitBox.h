@@ -6,20 +6,18 @@
 
 class FruitBox
 {
-	private:
-		int _size;
-		int _nbFruits;
-		FruitNode *list;
-
 	public:
-		FruitBox(int size);
-		int nbFruits()const;
-		int getSize()const;
-		bool putFruit(Fruit *f);
-		Fruit *pickFruit();
-		FruitNode *head()const;
-		std::string getClassName();
+		FruitBox(int const size);
+		~FruitBox();
+
+		int	nbFruits() const;
+		bool putFruit(Fruit const* f);
+		Fruit* pickFruit();
+		FruitNode* head() const;
+
+	private:
+		int	_size;
+		FruitNode* _list;
 };
 
-
-#endif 
+#endif

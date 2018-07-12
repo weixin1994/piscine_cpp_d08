@@ -7,7 +7,7 @@ class Lime : public Lemon
 {
 	public:
 		Lime();
+		~Lime();
 };
 
-
-#endif 
+#endif

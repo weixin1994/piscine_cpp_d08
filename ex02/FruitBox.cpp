@@ -1,71 +1,78 @@
 #include "FruitBox.h"
 
-std::string FruitBox::getClassName()
-{
-	return (typeid(*this).name() + 1);
-}
-
-FruitBox::FruitBox(int size) : _size(size), _nbFruits(0), list(NULL)
+FruitBox::FruitBox(int size) : _size(size), _list(NULL)
 {
 	
 }
 
-int FruitBox::nbFruits() const
+FruitBox::~FruitBox()
 {
-	return this->_nbFruits;
+	FruitNode* del;
+	while (_list)
+	{
+		del = _list;
+		_list = _list->next;
+		delete del;
+	}
 }
 
-bool FruitBox::putFruit(Fruit *f)
+int	FruitBox::nbFruits() const
 {
-	FruitNode *tmp;
-	FruitNode *elem;
-	int nb(1);
+	int	count = 0;
+	FruitNode* temp = _list;
+	while (temp && temp->elem != NULL)
+	{
+		count++;
+		temp = temp->next;
+	}
+	return count;
+}
 
-	if (nb > _size)
+bool FruitBox::putFruit(Fruit const* add)
+{
+	FruitNode* temp = _list;
+	FruitNode* last = new FruitNode;
+
+	last->elem = add;
+	last->next = NULL;
+	if (nbFruits() >= _size)
 		return false;
-	if (list == NULL)
+	else if (temp == NULL)
 	{
-		list = new FruitNode;
-		list->fruit = f;
-		list->next = NULL;
-		_nbFruits++;
+		_list = last;
 		return true;
-	}
-	tmp = list;
-	while (tmp->next != NULL)
+    }
+	while (temp->next)
 	{
-		if ((tmp->fruit == f) || (nb >= _size))
+		if (temp->elem == add)
 			return false;
-		nb++;
-		tmp = tmp->next;
+      temp = temp->next;
 	}
-	if (nb >= _size || tmp->fruit == f)
+	if (temp->elem == add)
 		return false;
-	elem = new FruitNode;
-	elem->fruit = f;
-	elem->next = NULL;
-	tmp->next = elem;
-	_nbFruits++;
+	temp->next = last;
 	return true;
 }
 
-Fruit *FruitBox::pickFruit()
+Fruit* FruitBox::pickFruit()
 {
-	FruitNode *tmp;
-
-	if (list == NULL)
-		return (NULL);
-	tmp = list;
-	list = list->next;
-	_nbFruits--;
-	return tmp->fruit;
+	FruitNode* temp = _list;
+	Fruit const* ret;
+	while (temp)
+	{
+		if (temp->elem)
+		{
+			ret = temp->elem;
+			_list = _list->next;
+			delete temp;
+			return const_cast<Fruit*>(ret);
+		}
+		temp = temp->next;
+	}
+	return NULL;
 }
 
-FruitNode *FruitBox::head() const
+FruitNode* FruitBox::head() const
 {
-	return list;
-}
-
-int FruitBox::getSize() const {
-	return this->_size;
+  return _list;
 }

@@ -1,7 +1,16 @@
 #include "Coconut.h"
 
-Coconut::Coconut(): Fruit()
+Coconut::Coconut() : Fruit("coconut", 15)
 {
-	this->_name = "coconut";
-	this->_vitamins = 15;
+	
+}
+
+Coconut::~Coconut()
+{
+	
+}
+
+std::string const& Coconut::getName() const
+{
+  return _name;
 }

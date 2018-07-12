@@ -9,6 +9,7 @@ class Banana : public Fruit
 	public:
 		Banana();
 		~Banana();
+
 		virtual std::string const&	getName() const;
 };
 

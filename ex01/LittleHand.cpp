@@ -1,5 +1,8 @@
+#include <cstring>
 #include "LittleHand.h"
-
+#include "Banana.h"
+#include "Lemon.h"
+#include "Lime.h"
 
 LittleHand::LittleHand()
 {
@@ -11,34 +14,20 @@ LittleHand::~LittleHand()
 	
 }
 
-void LittleHand::sortFruitBox(FruitBox& unsorted, FruitBox& lemons, FruitBox& bananas, FruitBox& limes)
+void LittleHand::sortFruitBox(FruitBox &unsorted, FruitBox &lemons, FruitBox &bananas, FruitBox &limes)
 {
-	FruitBox temp(unsorted.nbFruits());
-	Fruit* ret;
-  
-	while (unsorted.head() && unsorted.head()->elem)
+	int length = unsorted.nbFruits();
+	for (int i = 0; i < length; i++) 
 	{
-		if (unsorted.head()->elem->getName() == "banana")
-		{
-			ret = unsorted.pickFruit();
-			if (!(bananas.putFruit(ret)))
-			temp.putFruit(ret);
-		}
-		else if (unsorted.head()->elem->getName() == "lemon")
-		{
-			ret = unsorted.pickFruit();
-			if (!(lemons.putFruit(ret)))
-			temp.putFruit(ret);
-		}
-		else if (unsorted.head()->elem->getName() == "lime")
-		{
-			ret = unsorted.pickFruit();
-			if (!(limes.putFruit(ret)))
-			temp.putFruit(ret);
-		}
-		else
-			temp.putFruit(unsorted.pickFruit());;
+		bool flag = false;
+		Fruit *f = unsorted.pickFruit();
+		if (dynamic_cast<Lime*>(f) != nullptr)
+			flag = limes.putFruit(f);
+		else if (dynamic_cast<Lemon*>(f) != nullptr)
+			flag = lemons.putFruit(f);
+		else if (dynamic_cast<Banana*>(f) != nullptr)
+			flag = bananas.putFruit(f);
+		if (!flag)
+			unsorted.putFruit(f);
 	}
-	while (temp.head() && temp.head()->elem)
-		unsorted.putFruit(temp.pickFruit());
 }
