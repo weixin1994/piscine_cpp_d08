@@ -1,15 +1,17 @@
-#ifndef _LITTLEHAND_H_
-#define _LITTLEHAND_H_
-
+#ifndef _LITLLEHANDS_H_
+#define _LITLLEHANDS_H_
 
 #include "FruitBox.h"
 
-class LittleHand 
+class LittleHand
 {
 	public:
-		static void  sortFruitBox(FruitBox &unsorted , FruitBox &lemons , FruitBox &bananas , FruitBox &limes);
-
+		LittleHand();
+		~LittleHand();
+		virtual void sortFruitBox(FruitBox& unsorted,
+		FruitBox& lemons,
+		FruitBox& bananas,
+		FruitBox& limes);
 };
 
-
-#endif 
+#endif

@@ -1,26 +1,44 @@
 #include "LittleHand.h"
-#include "Lemon.h"
-#include "Banana.h"
-#include "Lime.h"
 
-void LittleHand::sortFruitBox(FruitBox &unsorted, FruitBox &lemons, FruitBox &bananas, FruitBox &limes)
+
+LittleHand::LittleHand()
 {
-	FruitBox temp = FruitBox(unsorted.getSize());
-	if (unsorted.head() == NULL)
-		return;
-	auto f = unsorted.pickFruit();
-	while (f) 
+	
+}
+
+LittleHand::~LittleHand()
+{
+	
+}
+
+void LittleHand::sortFruitBox(FruitBox& unsorted, FruitBox& lemons, FruitBox& bananas, FruitBox& limes)
+{
+	FruitBox temp(unsorted.nbFruits());
+	Fruit* ret;
+  
+	while (unsorted.head() && unsorted.head()->elem)
 	{
-		auto name = f->getName();
-		if (name == "lemon" && lemons.nbFruits() < lemons.getSize())
-			lemons.putFruit(f);
-		else if (name == "banana" && bananas.nbFruits() < bananas.getSize())
-			bananas.putFruit(f);
-		else if (name == "lime" && limes.nbFruits() < limes.getSize())
-			limes.putFruit(f);
+		if (unsorted.head()->elem->getName() == "banana")
+		{
+			ret = unsorted.pickFruit();
+			if (!(bananas.putFruit(ret)))
+			temp.putFruit(ret);
+		}
+		else if (unsorted.head()->elem->getName() == "lemon")
+		{
+			ret = unsorted.pickFruit();
+			if (!(lemons.putFruit(ret)))
+			temp.putFruit(ret);
+		}
+		else if (unsorted.head()->elem->getName() == "lime")
+		{
+			ret = unsorted.pickFruit();
+			if (!(limes.putFruit(ret)))
+			temp.putFruit(ret);
+		}
 		else
-			temp.putFruit(f);
-		f = unsorted.pickFruit();
+			temp.putFruit(unsorted.pickFruit());;
 	}
-	unsorted = temp;
+	while (temp.head() && temp.head()->elem)
+		unsorted.putFruit(temp.pickFruit());
 }

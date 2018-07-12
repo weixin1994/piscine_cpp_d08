@@ -9,13 +9,3 @@ Lime::~Lime()
 {
 	
 }
-
-std::string Lime::getName() const
-{
-	return (_name);
-}
-
-int	Lime::getVitamins() const
-{
-	return (_vitamins);
-}

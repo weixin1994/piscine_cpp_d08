@@ -1,14 +1,15 @@
 #ifndef _FRUITNODE_H_
 #define _FRUITNODE_H_
 
-#include <string>
 #include "Fruit.h"
 
-class FruitNode
+typedef struct s_FruitNode FruitNode;
+
+struct s_FruitNode
 {
-	public:
-		Fruit *content;
-		FruitNode *next;
+	  Fruit const* elem;
+	  FruitNode* next;
 };
+
 
 #endif

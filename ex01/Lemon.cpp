@@ -5,22 +5,17 @@ Lemon::Lemon() : Fruit("lemon", 3)
 	
 }
 
-Lemon::Lemon(std::string const &name, int const vitamins) : Fruit(name, vitamins)
+Lemon::Lemon(std::string const& name, int vitamins) : Fruit(name, vitamins)
 {
 	
 }
 
 Lemon::~Lemon()
 {
-	 
+	
 }
 
-std::string Lemon::getName() const
+std::string const& Lemon::getName() const
 {
-	return (_name);
-}
-
-int	Lemon::getVitamins() const
-{
-	return (_vitamins);
+  return _name;
 }

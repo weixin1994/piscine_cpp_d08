@@ -2,7 +2,7 @@
 
 Banana::Banana() : Fruit("banana", 5)
 {
-
+	
 }
 
 Banana::~Banana()
@@ -10,12 +10,7 @@ Banana::~Banana()
 	
 }
 
-std::string Banana::getName() const
+std::string	const&	Banana::getName() const
 {
-	return (_name);
-}
-
-int	Banana::getVitamins() const
-{
-	return (_vitamins);
+  return _name;
 }
