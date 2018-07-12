@@ -1,78 +1,63 @@
 #include "FruitBox.h"
 
-FruitBox::FruitBox(int size) : _size(size), _list(NULL)
+FruitBox::FruitBox(int _size) :  list(NULL), _size(_size), _number(0)
 {
 	
 }
 
 FruitBox::~FruitBox()
 {
-	FruitNode* del;
-	while (_list)
-	{
-		del = _list;
-		_list = _list->next;
-		delete del;
-	}
+	
 }
 
-int	FruitBox::nbFruits() const
+int	FruitBox::nbFruits()
 {
-	int	count = 0;
-	FruitNode* temp = _list;
-	while (temp && temp->elem != NULL)
-	{
-		count++;
-		temp = temp->next;
-	}
-	return count;
+	return (_number);
 }
 
-bool FruitBox::putFruit(Fruit const* add)
+bool FruitBox::putFruit(Fruit *f)
 {
-	FruitNode* temp = _list;
-	FruitNode* last = new FruitNode;
-
-	last->elem = add;
-	last->next = NULL;
-	if (nbFruits() >= _size)
-		return false;
-	else if (temp == NULL)
+	if (f != NULL && _number < _size)
 	{
-		_list = last;
-		return true;
-    }
-	while (temp->next)
-	{
-		if (temp->elem == add)
-			return false;
-      temp = temp->next;
-	}
-	if (temp->elem == add)
-		return false;
-	temp->next = last;
-	return true;
-}
-
-Fruit* FruitBox::pickFruit()
-{
-	FruitNode* temp = _list;
-	Fruit const* ret;
-	while (temp)
-	{
-		if (temp->elem)
+		FruitNode *current = list;
+		FruitNode *node = new FruitNode();
+		node->content = f;
+		if (!list)
+			list = node;
+		else
 		{
-			ret = temp->elem;
-			_list = _list->next;
-			delete temp;
-			return const_cast<Fruit*>(ret);
+			if (current->content == f)
+				return (false);
+			while (current->next)
+			{
+				if (current->content == f)
+					return (false);
+				current = current->next;
+			}
+			current->next = node;
 		}
-		temp = temp->next;
+		_number++;
+		return (true);
 	}
-	return NULL;
+	return (false);
 }
 
-FruitNode* FruitBox::head() const
+Fruit *FruitBox::pickFruit()
 {
-  return _list;
+	if (!list)
+		return (NULL);
+	Fruit *temp = list->content;
+	list = list->next;
+	_number--;
+	return (temp);
+}
+
+FruitNode *FruitBox::head() const
+{
+	return (list);
+}
+
+int	FruitBox::getSize()
+{
+	return (_size);
 }
